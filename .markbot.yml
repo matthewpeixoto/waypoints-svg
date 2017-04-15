@@ -1,0 +1,102 @@
+repo: 'waypoints-svg'
+
+naming: true
+restrictFileTypes: true
+liveWebsite: true
+
+git:
+  numCommits: 2
+  allCommitted: true
+  allSynced: true
+
+html:
+  - path: 'index.html'
+    valid: true
+    bestPractices: true
+    outline: true
+    has:
+      - 'script[src*="jquery"]'
+      - 'script[src*="waypoints"]'
+      - 'script[src="js/main.js"]'
+      - ['script[src*="jquery"] + script[src*="waypoints"] + script[src="js/main.js"]', 'The order of the Javascript files is really important—it should be: `jqeury`, `waypoints` then `main.js`']
+
+css:
+  - path: 'css/main.css'
+    valid: true
+    bestPractices: true
+    search:
+      - 'opacity'
+      - 'transition'
+
+js:
+  - path: 'js/main.js'
+    valid: true
+    bestPractices: true
+    search:
+      - '\.addClass\('
+      - 'var'
+      - '\.waypoint\(function \(direction\)'
+      - 'offset\:'
+
+screenshots:
+  - path: 'index.html'
+    sizes: [608]
+
+functionality:
+  - path: 'index.html'
+    tests:
+      - |
+        let img = $('section:nth-of-type(1) svg');
+
+        if (css(img).opacity != 0) fail('The mammals image is visible as soon as the page loads—it should start with an `opacity: 0`');
+
+        on(img, 'transitionend', function (err, ev) {
+          if (err) fail('The mammals image transition never completes');
+          if (css(img).opacity == 0) fail('The mammals image doesn’t become visible when scrolled to');
+
+          pass();
+        });
+
+        window.scrollTo(0, offset(img).top);
+
+      - |
+        let img = $('section:nth-of-type(2) svg');
+
+        if (css(img).opacity != 0) fail('The plesiosaurs image is visible as soon as the page loads—it should start with an `opacity: 0`');
+
+        on(img, 'transitionend', function (err, ev) {
+          if (err) fail('The plesiosaurs image transition never completes');
+          if (css(img).opacity == 0) fail('The plesiosaurs image doesn’t become visible when scrolled to');
+
+          pass();
+        });
+
+        window.scrollTo(0, offset(img).top);
+
+      - |
+        let img = $('section:nth-of-type(3) svg');
+
+        if (css(img).opacity != 0) fail('The dinosaurs image is visible as soon as the page loads—it should start with an `opacity: 0`');
+
+        on(img, 'transitionend', function (err, ev) {
+          if (err) fail('The dinosaurs image transition never completes');
+          if (css(img).opacity == 0) fail('The dinosaurs image doesn’t become visible when scrolled to');
+
+          pass();
+        });
+
+        window.scrollTo(0, offset(img).top);
+
+      - |
+        let img = $('section:nth-of-type(4) svg');
+
+        if (css(img).opacity != 0) fail('The pterosaurs image is visible as soon as the page loads—it should start with an `opacity: 0`');
+
+        on(img, 'transitionend', function (err, ev) {
+          if (err) fail('The pterosaurs image transition never completes');
+          if (css(img).opacity == 0) fail('The pterosaurs image doesn’t become visible when scrolled to');
+
+          pass();
+        });
+
+        window.scrollTo(0, offset(img).top);
