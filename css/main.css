@@ -20,6 +20,34 @@ body {
 svg {
   display: block;
   margin: 0 auto;
+
+  opacity: 0;
+  transition: all 200ms ease-in;
+}
+
+.js-creature-animate {
+  opacity: 1;
+  animation: creature-jiggle 250ms linear;
+}
+
+@keyframes creature-jiggle {
+
+  0% {
+    transform: rotate(0);
+  }
+
+  33% {
+    transform: rotate(15deg);
+  }
+
+  66% {
+    transform: rotate(-15deg);
+  }
+
+  100% {
+    transform: rotate(0);
+  }
+
 }
 
 h1 {
